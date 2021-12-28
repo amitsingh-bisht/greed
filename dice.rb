@@ -1,9 +1,7 @@
-Class Dice
+class Dice
     def roll_a_dice
-        dice = []
-        5.times { 
-            dice << rand(5) * 1
-        }
-        dice
+        1.upto(4) do 
+            print rand(5)+1
+        end
     end
 end
