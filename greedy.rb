@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 # -*- ruby -*-
 
-require "./dice"
+require "./dice-roll"
+require "./dice-score"
 
 puts ""
 puts "================================================================"
@@ -22,7 +23,8 @@ is_round_completed = false
 current_round = 1
 rounds_to_reach_3000 = -1
 
-dice_object = Dice.new
+dice_roll_object = DiceRoll.new
+dice_score_object = DiceScore.new
 
 until is_round_completed
     puts ""
@@ -35,9 +37,9 @@ until is_round_completed
         dice_count = 5
         go_for_next_roll = "y"
         while go_for_next_roll == "y"
-            dice_values = dice_object.roll_a_dice(dice_count)
+            dice_values = dice_roll_object.roll_a_dice(dice_count)
             print "\nPlayer #{current_player + 1} rolls : #{dice_values} \n"
-            score, scoring_dice, dice_values = dice_object.score_on_roll(dice_values)
+            score, scoring_dice, dice_values = dice_score_object.score_on_roll(dice_values)
             print "  Score in this roll : #{score}\n"
             if score == 0
                 print "  Score in this round : "
@@ -50,7 +52,7 @@ until is_round_completed
                 score_accumulated_for_this_round += score
                 print "  Score in this round : #{score_accumulated_for_this_round}"
                 print (score_of_players[current_player] == 0 and score_accumulated_for_this_round < 300) ? 
-                    " (Minimum score required: 300. You still need #{300 - score_accumulated_for_this_round} score to add this turn score to your total score)\n" : "\n"
+                    " (Minimum score: 300. You still need #{300 - score_accumulated_for_this_round} score to add this turn score to your total score)\n" : "\n"
                 print "  Non-Scoring Dice : #{dice_values}\n"
                 if dice_count > 0
                     print "  Do you want to roll the non-scoring #{dice_count} dice? (y/n): " 
