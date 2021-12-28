@@ -48,7 +48,9 @@ until is_round_completed
             else
                 dice_count = dice_values.size
                 score_accumulated_for_this_round += score
-                print "  Score in this round : #{score_accumulated_for_this_round}\n"
+                print "  Score in this round : #{score_accumulated_for_this_round}"
+                print (score_of_players[current_player] == 0 and score_accumulated_for_this_round < 300) ? 
+                    " (Minimum score required: 300. You still need #{300 - score_accumulated_for_this_round} score to add this turn score to your total score)\n" : "\n"
                 print "  Non-Scoring Dice : #{dice_values}\n"
                 if dice_count > 0
                     print "  Do you want to roll the non-scoring #{dice_count} dice? (y/n): " 
@@ -58,7 +60,8 @@ until is_round_completed
                 end
             end 
         end
-        score_of_players[current_player] += score_accumulated_for_this_round
+        (score_of_players[current_player] == 0 and score_accumulated_for_this_round < 300) ? 
+            0 : score_of_players[current_player] += score_accumulated_for_this_round
         current_player += 1
     end
     puts "\n\nScore after Turn #{current_round} : "
