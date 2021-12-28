@@ -1,4 +1,5 @@
 Enter number of players: 2
+
 Turn 1:
 --------
 Player 1 rolls: 5, 5, 1, 1, 2
