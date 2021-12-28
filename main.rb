@@ -1,10 +1,12 @@
-require './dice'
+#!/usr/bin/env ruby
+$LOAD_PATH << File.dirname(__FILE__)
+require 'Dice'
 
-puts "\n\n\t\t\t================================"
-puts "\t\t\t===        " + "GREED GAME" + "        ==="
-puts "\t\t\t================================"
+puts "================================"
+puts "           GREED GAME           " 
+puts "================================"
 
-print "\n\nEnter number of players: "
+print "Enter number of players: "
 number_of_players = gets.chomp.to_i
 
 # Create an array to keep track of the score of players
