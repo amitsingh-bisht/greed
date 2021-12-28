@@ -36,6 +36,7 @@ until is_round_completed
         score_accumulated_for_this_round = 0
         dice_count = 5
         go_for_next_roll = "y"
+        all_5_dice_rolled_in_first_attempt = true
         while go_for_next_roll == "y"
             dice_values = dice_roll_object.roll_a_dice(dice_count)
             print "\nPlayer #{current_player + 1} rolls : #{dice_values} \n"
@@ -55,8 +56,13 @@ until is_round_completed
                     " (Minimum score: 300. You still need #{300 - score_accumulated_for_this_round} score to add this turn score to your total score)\n" : "\n"
                 print "  Non-Scoring Dice : #{dice_values}\n"
                 if dice_count > 0
+                    all_5_dice_rolled_in_first_attempt = false
                     print "  Do you want to roll the non-scoring #{dice_count} dice? (y/n): " 
                     go_for_next_roll = (gets.chomp.to_s.downcase)[0]
+                elsif dice_count == 0 and all_5_dice_rolled_in_first_attempt
+                    print "  Tremendous ! All In. You have scored points on all 5 dice. Extra roll is provided to you. "
+                    dice_count = 5
+                    go_for_next_roll = "y"
                 else
                     go_for_next_roll = "n"
                 end
