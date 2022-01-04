@@ -44,4 +44,5 @@ describe GreedyGame do
             assert_equal 1000, score
         end
     end
+    
 end
